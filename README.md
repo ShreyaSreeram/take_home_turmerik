@@ -1,1 +1,5 @@
 This is the readme outlining my steps for this take home project
+
+Dataset choice: decided to go with the dataset with a 1000 samples, as it provides some patient diversity while being small enough for quick testing and iteration. Given the time constraint for this take-home assignment, I decided this would be the best option. The smaller dataset of 100 samples would also have been quick, but may not have provided enough diversity of patients for the testing. 
+
+REWRITE: It looks like your dataset is split into multiple CSV files, each corresponding to different types of data (e.g., allergies, conditions, encounters, patients, etc.). Since you want to match clinical trials to patients, you’ll primarily work with the patients.csv file for basic demographics (age, gender, etc.) and other relevant files (like conditions.csv, medications.csv) to get more detailed information on each patient’s medical history.
