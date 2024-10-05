@@ -34,8 +34,8 @@ print(patient_demographics.head())
 
 
 #Next step: link patients with conditions and medications
-conditions_file_path = '/path/to/conditions.csv'  
-medications_file_path = '/path/to/medications.csv' 
+conditions_file_path = '/Users/Shreya1/Downloads/csv/conditions.csv'  
+medications_file_path = '/Users/Shreya1/Downloads/csv/medications.csv' 
 conditions_df = pd.read_csv(conditions_file_path)
 medications_df = pd.read_csv(medications_file_path)
 
@@ -45,7 +45,7 @@ def link_conditions_to_patients(patients_df, conditions_df):
     linked_conditions = pd.merge(patients_df[['Id']], conditions_df, left_on='Id', right_on='PATIENT', how='left')
     return linked_conditions
 
-# tep 2: Link Medications to Patients
+#step 2: Link Medications to Patients
 def link_medications_to_patients(patients_df, medications_df):
     # Merge the patients DataFrame with medications DataFrame based on the patient Id
     linked_medications = pd.merge(patients_df[['Id']], medications_df, left_on='Id', right_on='PATIENT', how='left')
