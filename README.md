@@ -73,6 +73,7 @@ No setup is required for this, but ensure your internet connection is active, as
 To execute the main workflow and check patient eligibility for trials, run:
 ```python 
 python src/main.py
+```
 This will:
 
 	•	Load patient data.
