@@ -3,19 +3,18 @@ Clinical Trial Eligibility Matching
 This project checks patient eligibility for clinical trials based on their medical conditions, medications, and age. It fetches clinical trials that are actively recruiting, applies inclusion and exclusion criteria, and outputs the list of eligible patients for specific trials.
 
 Project Structure: 
-
 /project
     /src
         main.py                # Main entry point to execute the workflow
-        load_data.py            # Module for loading and consolidating patient data
-        criteria_check.py       # Functions to check inclusion and exclusion criteria
-        api_fetch.py            # Fetches clinical trial data from the API
-        criteria_check.py          # Uses SpaCy for natural language processing to check exclusions
+        load_data.py           # Module for loading and consolidating patient data
+        criteria_check.py      # Functions to check inclusion and exclusion criteria
+        api_fetch.py           # Fetches clinical trial data from the API
+        criteria_check.py      # Uses SpaCy for natural language processing to check exclusions
     /tests
-        test_criteria_check.py  # Unit tests for inclusion and exclusion criteria checks
-        test_load_data.py       # Unit test for data loading functionality
-        test_api_fetch.py       # Unit test for API fetching functionality (mocked)
-        test_integration.py     # Integration test for the entire project
+        test_criteria_check.py # Unit tests for inclusion and exclusion criteria checks
+        test_load_data.py      # Unit test for data loading functionality
+        test_api_fetch.py      # Unit test for API fetching functionality (mocked)
+        test_integration.py    # Integration test for the entire project
     eligible_patients_and_trials.csv  # Output CSV file containing eligible patients and trials
     eligible_patients_and_trials.json # Output JSON file containing eligible patients and trials
 
@@ -84,6 +83,7 @@ This will:
 7. Run Unit and Integration Tests
 
 To ensure that all components are functioning correctly, you can run the unit tests and integration tests using:
+
 ```python
 python -m unittest discover -s tests
 ```
