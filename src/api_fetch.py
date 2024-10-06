@@ -31,7 +31,7 @@ def fetch_relevant_trials(limit=100):
 
         # Send GET request to fetch trial data
         response = requests.get(base_url, params=params)
-        response.raise_for_status()  # Raise an error for bad responses
+        response.raise_for_status()  
         data = response.json()
 
         for trial in data.get('studies', []):
@@ -39,13 +39,13 @@ def fetch_relevant_trials(limit=100):
             identification = protocol.get('identificationModule', {})
             eligibility = protocol.get('eligibilityModule', {})
 
-            # Extract inclusion and exclusion criteria
+            #Extract inclusion and exclusion criteria
             eligibility_criteria = eligibility.get('eligibilityCriteria', '')
             inclusion_criteria = ''
             exclusion_criteria = ''
 
             if eligibility_criteria:
-                # Split the criteria into inclusion and exclusion sections
+               
                 if "Inclusion Criteria:" in eligibility_criteria:
                     inclusion_part = eligibility_criteria.split("Inclusion Criteria:")[1]
                     inclusion_criteria = inclusion_part.split("Exclusion Criteria:")[0].strip()
@@ -54,31 +54,31 @@ def fetch_relevant_trials(limit=100):
                     exclusion_part = eligibility_criteria.split("Exclusion Criteria:")[1]
                     exclusion_criteria = exclusion_part.strip()
 
-            # Extract trial info, handling missing values
+   
             trial_info = {
                 "trial_id": identification.get('nctId', 'Unknown'),
                 "min_age": eligibility.get('minimumAge', 'N/A'),
                 "max_age": eligibility.get('maximumAge', 'N/A'),
-                "inclusion_criteria": inclusion_criteria,  # <-- New inclusion criteria field
-                "exclusion_criteria": exclusion_criteria,  # <-- New exclusion criteria field
+                "inclusion_criteria": inclusion_criteria,  
+                "exclusion_criteria": exclusion_criteria,  
                 "sex": eligibility.get('sex', 'N/A')
             }
 
-            # Add the trial to the list
+    
             trials_data.append(trial_info)
             fetched_trials += 1
 
             if fetched_trials >= limit:
                 break
 
-        # Pagination handling
+
         next_page_token = data.get('nextPageToken')
         if not next_page_token:
             break
 
-        time.sleep(1)  # Wait for 1 second before making the next request
+        time.sleep(1) 
 
     return trials_data
 
-# Fetch and print trial data for testing
+#Fetch and print trial data for testing
 trials_data = fetch_relevant_trials(limit=10)

@@ -11,28 +11,28 @@ import pandas as pd
 
 class TestInclusionCriteria(unittest.TestCase):
     def test_valid_age_range(self):
-        # Patient is within the trial's age range
+        #Ensuring the patient is within the trial's age range
         birthdate = '1980-01-01'
         min_age = '30 Years'
         max_age = '60 Years'
         self.assertTrue(check_inclusion_criteria(birthdate, min_age, max_age))
 
     def test_age_below_min(self):
-        # Patient is too young for the trial
+        #Ensuring the patient is too young for the trial
         birthdate = '2010-01-01'
         min_age = '30 Years'
         max_age = '60 Years'
         self.assertFalse(check_inclusion_criteria(birthdate, min_age, max_age))
 
     def test_age_above_max(self):
-        # Patient is too old for the trial
+        #Ensuring the patient is too old for the trial
         birthdate = '1930-01-01'
         min_age = '30 Years'
         max_age = '60 Years'
         self.assertFalse(check_inclusion_criteria(birthdate, min_age, max_age))
 
     def test_missing_birthdate(self):
-        # Patient has no birthdate (NaN or None)
+        #Ensuring the patient has no birthdate (NaN or None)
         birthdate = None
         min_age = '30 Years'
         max_age = '60 Years'
@@ -49,7 +49,7 @@ class TestExclusionCriteria(unittest.TestCase):
         patient_medications = "Insulin"
         trial_excluded_conditions = "Cancer, HIV"
 
-        # Patient should not be excluded
+        #Ensuring the patient should not be excluded
         self.assertTrue(check_exclusion_criteria_spacy(patient_conditions, patient_medications, trial_excluded_conditions))
 
     def test_excluded_due_to_condition(self):
@@ -57,7 +57,7 @@ class TestExclusionCriteria(unittest.TestCase):
         patient_medications = "Insulin"
         trial_excluded_conditions = "Diabetes, Cancer"
 
-        # Patient should be excluded due to matching condition
+        #Ensuring the patient should be excluded due to matching condition
         self.assertFalse(check_exclusion_criteria_spacy(patient_conditions, patient_medications, trial_excluded_conditions))
 
 if __name__ == '__main__':

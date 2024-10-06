@@ -8,7 +8,7 @@ from api_fetch import fetch_relevant_trials
 class TestApiFetch(unittest.TestCase):
     @patch('api_fetch.requests.get')
     def test_fetch_relevant_trials(self, mock_get):
-        # Mock the API response
+        #Mocking the API response
         mock_get.return_value.status_code = 200
         mock_get.return_value.json.return_value = {
             "studies": [
