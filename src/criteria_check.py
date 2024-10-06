@@ -62,19 +62,20 @@ def check_exclusion_criteria_spacy(patient_conditions, patient_medications, tria
 
     Returns:
         bool: False if the patient's conditions or medications match any of the trial's exclusion criteria, True if no matches are found.
-
-   
     """
-    patient_conditions_entities = extract_entities(patient_conditions)
-    patient_medications_entities = extract_entities(patient_medications)
-    trial_excluded_conditions_entities = extract_entities(trial_excluded_conditions_text)
+    # Normalize everything to lowercase
+    patient_conditions_entities = [entity.lower() for entity in extract_entities(patient_conditions)]
+    patient_medications_entities = [entity.lower() for entity in extract_entities(patient_medications)]
+    trial_excluded_conditions_entities = [entity.lower() for entity in extract_entities(trial_excluded_conditions_text)]
 
-    # Check if any of the patient's conditions or medications match the exclusion criteria
+    # Check if any of the patient's conditions match the exclusion criteria
     for condition in patient_conditions_entities:
-        if condition.lower() in trial_excluded_conditions_entities:
-            return False  # Exclude patient
-    for medication in patient_medications_entities:
-        if medication.lower() in trial_excluded_conditions_entities:
-            return False  # Exclude patient
+        if condition in trial_excluded_conditions_entities:
+            return False  # Exclude the patient due to condition match
 
-    return True  # Patient is not excluded
+    # Check if any of the patient's medications match the exclusion criteria
+    for medication in patient_medications_entities:
+        if medication in trial_excluded_conditions_entities:
+            return False  # Exclude the patient due to medication match
+
+    return True  # No matches found, patient is not excluded
