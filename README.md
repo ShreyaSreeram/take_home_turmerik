@@ -36,6 +36,7 @@ First, clone this repository to your local machine:
 ```python
 git clone https://github.com/your-repo/clinical-trial-matching.git
 cd clinical-trial-matching
+```
 
 2. Create a Virtual Environment
 
@@ -43,7 +44,8 @@ Create a virtual environment to manage dependencies:
 
 ```python 
 python -m venv venv
-source venv/bin/activate  # On Windows, use venv\Scripts\activate
+source venv/bin/activate
+```  
 
 3. Install Dependencies
 
@@ -51,6 +53,7 @@ Install the required Python libraries:
 
 ```python 
 pip install -r requirements.txt
+```
 
 4. Download SpaCy Language Model
 
@@ -58,6 +61,7 @@ The project uses SpaCy for natural language processing. Download the small Engli
 
 ```python 
 python -m spacy download en_core_web_sm
+```
 
 5. Set Up ClinicalTrials.gov API
 
@@ -82,6 +86,7 @@ This will:
 To ensure that all components are functioning correctly, you can run the unit tests and integration tests using:
 ```python
 python -m unittest discover -s tests
+```
 
 Project Files
 
