@@ -3,6 +3,7 @@ Clinical Trial Eligibility Matching
 This project checks patient eligibility for clinical trials based on their medical conditions, medications, and age. It fetches clinical trials that are actively recruiting, applies inclusion and exclusion criteria, and outputs the list of eligible patients for specific trials.
 
 Project Structure: 
+```
 /project
     /src
         main.py                # Main entry point to execute the workflow
@@ -17,6 +18,7 @@ Project Structure:
         test_integration.py    # Integration test for the entire project
     eligible_patients_and_trials.csv  # Output CSV file containing eligible patients and trials
     eligible_patients_and_trials.json # Output JSON file containing eligible patients and trials
+```
 
 Features
 
