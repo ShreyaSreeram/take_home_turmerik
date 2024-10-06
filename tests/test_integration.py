@@ -10,7 +10,7 @@ from main import main
 class TestIntegration(unittest.TestCase):
     @patch('api_fetch.requests.get')
     def test_integration_workflow(self, mock_get):
-        # Mock the API response for clinical trials
+        #Mock the API response for clinical trials
         mock_get.return_value.status_code = 200
         mock_get.return_value.json.return_value = {
             "studies": [
@@ -22,18 +22,17 @@ class TestIntegration(unittest.TestCase):
         # Simulate a run of the entire workflow
         main()
 
-        # Check if the CSV and JSON files are generated
         csv_file = 'eligible_patients_and_trials.csv'
         json_file = 'eligible_patients_and_trials.json'
 
         # Check CSV output
         df = pd.read_csv(csv_file)
-        self.assertGreater(len(df), 0)  # Ensure data exists in CSV
+        self.assertGreater(len(df), 0)
 
-        # Check JSON output
+        #Check JSON output
         with open(json_file, 'r') as f:
             data = json.load(f)
-            self.assertGreater(len(data), 0)  # Ensure data exists in JSON
+            self.assertGreater(len(data), 0)  
 
 if __name__ == '__main__':
     unittest.main()

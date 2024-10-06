@@ -1,7 +1,7 @@
 import pandas as pd
 
 def load_patient_data():
-    # Load the CSV files
+    #Loading the CSV files
     print("Loading and merging patient data...")
     patients = pd.read_csv('/Users/Shreya1/Downloads/csv/patients.csv')
     conditions = pd.read_csv('/Users/Shreya1/Downloads/csv/conditions.csv')
@@ -10,7 +10,7 @@ def load_patient_data():
     immunizations = pd.read_csv('/Users/Shreya1/Downloads/csv/immunizations.csv')
     procedures = pd.read_csv('/Users/Shreya1/Downloads/csv/procedures.csv')
 
-   # Rename 'Id' to 'PATIENT' in patients to match other tables
+#Renaming 'Id' to 'PATIENT' in patients to match other tables
     patients.rename(columns={'Id': 'PATIENT'}, inplace=True)
 
     # Group by 'PATIENT' and aggregate descriptions into a single string per patient
@@ -20,14 +20,14 @@ def load_patient_data():
     immunizations_grouped = immunizations.groupby('PATIENT')['DESCRIPTION'].apply(lambda x: ', '.join(x.dropna().unique())).reset_index()
     procedures_grouped = procedures.groupby('PATIENT')['DESCRIPTION'].apply(lambda x: ', '.join(x.dropna().unique())).reset_index()
 
-    # Rename the description columns after aggregation
+    #Rename the description columns after aggregation
     conditions_grouped.rename(columns={'DESCRIPTION': 'CONDITION_DESCRIPTION'}, inplace=True)
     medications_grouped.rename(columns={'DESCRIPTION': 'MEDICATION_DESCRIPTION'}, inplace=True)
     allergies_grouped.rename(columns={'DESCRIPTION': 'ALLERGY_DESCRIPTION'}, inplace=True)
     immunizations_grouped.rename(columns={'DESCRIPTION': 'IMMUNIZATION_DESCRIPTION'}, inplace=True)
     procedures_grouped.rename(columns={'DESCRIPTION': 'PROCEDURE_DESCRIPTION'}, inplace=True)
 
-    # Merge the grouped tables back with the patients table
+    #Merging the grouped tables back with the patients table
     merged_data = patients.copy()
     merged_data = merged_data.merge(conditions_grouped, on='PATIENT', how='left')
     merged_data = merged_data.merge(medications_grouped, on='PATIENT', how='left')
@@ -37,7 +37,7 @@ def load_patient_data():
 
     return merged_data
 
-# Run the function to load, consolidate, and merge the data
+#Run the function to load, consolidate, and merge the data
 merged_patient_data = load_patient_data()
 
 merged_patient_data.to_csv('merged_patient_data.csv', index=False)
